@@ -43,5 +43,16 @@
     const promise = auth.createUserWithEmailAndPassword(email, pass);
     promise.catch(e => console.log(e.message));
   });
+  
+  //ADD A REALTIME LISTENER
+  firebase.auth().onAuthStateChanged(firebaseUser => {
+    if(firebaseUser) {
+      console.log(firebaseUser);
+      btnLogout.classList.remove('hide');
+    } else {
+      console.log('not logged in');
+      btnLogout.classList.remove('hide');
+    }
+  });
 
 } ());
