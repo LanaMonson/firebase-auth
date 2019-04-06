@@ -23,15 +23,15 @@
 
   //ADD LOGIN EVENT
   bthLogin.addEventistener('click', e => {
-      //GET EMAIL AND PASS
-      const email = txtEmail.value;
-      const pass = txtPassword.value;
-      const auth = firebase.auth();
-      //SIGN IN
-      const promise = auth.signInWithEmailAndPassword(email. pass);
-      promise.catch(e => console.log(e.message));
+    //GET EMAIL AND PASS
+    const email = txtEmail.value;
+    const pass = txtPassword.value;
+    const auth = firebase.auth();
+    //SIGN IN
+    const promise = auth.signInWithEmailAndPassword(email, pass);
+    promise.catch(e => console.log(e.message));
   });
-  
+
   //ADD SIGNUP EVENT
   btnSignUp.addEventListener('click', e => {
     //GET EMAIL AND PASS
@@ -43,7 +43,11 @@
     const promise = auth.createUserWithEmailAndPassword(email, pass);
     promise.catch(e => console.log(e.message));
   });
-  
+
+  btnLogout.addEventListener('click', e => {
+    firebase.auth().signOut();
+  });
+
   //ADD A REALTIME LISTENER
   firebase.auth().onAuthStateChanged(firebaseUser => {
     if(firebaseUser) {
@@ -54,5 +58,6 @@
       btnLogout.classList.remove('hide');
     }
   });
+
 
 } ());
